@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Web Editor</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="webfonts/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
+  </head>
+
+  <body>
+    <div id="tool_drawer">
+
+      <div id="div_tag_tool" draggable="true" ondragstart="drag(event)">
+        <i class="far fa-square"></i>
+        <div id="tool_title">CONTAINER</div>
+      </div>
+
+      <div id="div_tag_tool"></div>
+
+    </div>
+
+    <div id="main_site_wrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+    </div>
+
+    <script>
+    this.state = {
+      isContainerHighlighted: false,
+      editId: ""
+    };
+    console.log(this.state.isContainerHighlighted);
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function generateId() {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (var i = 0; i < 15; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function highlight(ev) {
+      var { isContainerHighlighted, editId } = this.state;
+      var divID = ev.target.id;
+
+      if(editId === "") {
+        document.getElementById(ev.target.id).style.border = isContainerHighlighted ? "2px solid blue" : "0px solid transparent";
+        this.state.editId = ev.target.id;
+      } else {
+        document.getElementById(editId).style.border = isContainerHighlighted ? "2px solid blue" : "0px solid transparent";
+        this.state.editId = ev.target.id;
+      }
+
+      this.state.isContainerHighlighted = isContainerHighlighted ? false : true;
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var newDiv = document.createElement("div");
+      newDiv.setAttribute("class", "container editableElement");
+      newDiv.setAttribute("id", generateId());
+      newDiv.setAttribute("onclick", "highlight(event)");
+      newDiv.setAttribute("style", "background-color: red; width: 100%; height: 100px; border: 0px solid");
+      ev.target.appendChild(newDiv);
+    }
+    </script>
+  </body>
+
+</html>
