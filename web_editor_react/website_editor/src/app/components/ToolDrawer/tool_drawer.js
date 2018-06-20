@@ -13,13 +13,23 @@ class ToolDrawer extends Component {
       <div className="tool_drawer_wrapper">
       {
         Tools.map((item, index) => (
-          <div className="tool_wrapper" key={index+item.id} draggable="true" onDragStart={(event)=>{
-            onStartDrag(item.name);
-            drag(event);
-          }}>
-            <div id="tool_icon"><i className={`fa ${item.icon}`} aria-hidden="true" id="tool_container_icon" style={{fontSize: item.size + 'px'}}></i></div>
-            <div id="tool_lable">{item.label}</div>
-          </div>
+          item.type === "draggable" ?
+          (
+            <div className="tool_wrapper" key={index+item.id} draggable="true" onDragStart={(event)=>{
+              onStartDrag(item.name);
+              drag(event);
+            }}>
+              <div id="tool_icon"><i className={`fa ${item.icon}`} aria-hidden="true" id="tool_container_icon" style={{fontSize: item.size + 'px'}}></i></div>
+              <div id="tool_lable">{item.label}</div>
+            </div>
+          )
+          :
+          (
+            <div className="tool_wrapper" key={index+item.id} onClick={()=>item.event()}>
+              <div id="tool_icon"><i className={`fa ${item.icon}`} aria-hidden="true" id="tool_container_icon" style={{fontSize: item.size + 'px'}}></i></div>
+              <div id="tool_lable">{item.label}</div>
+            </div>
+          )
         ))
       }
       </div>
