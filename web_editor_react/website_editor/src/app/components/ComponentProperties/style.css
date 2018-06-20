@@ -1,0 +1,25 @@
+#component_properties_wrapper {
+  right: 0px;
+  background-color: rgba(0,0,0,0.8);
+  width: 150px;
+  height: 100vh;
+  z-index: 1;
+  float: right;
+  display: none;
+}
+
+#property_title {
+  width: 100%;
+  height: 30px;
+  background-color: #3585b7;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: tahoma;
+}
+
+#component_properties {
+
+}
