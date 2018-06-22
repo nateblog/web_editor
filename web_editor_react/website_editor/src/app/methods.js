@@ -25,6 +25,12 @@ export function drop(ev, tool, self) {
       newDiv.setAttribute("id", generateId());
       newDiv.onclick = (event)=>self.divHighlighter(event);
       newDiv.setAttribute("style", self.state.toolProps.container);
+
+      var highlighter = document.createElement("div");
+      highlighter.setAttribute("class", "container highlighter");
+      highlighter.setAttribute("id", generateId());
+
+      newDiv.innerHTML = highlighter.outerHTML;
       ev.target.appendChild(newDiv);
     }
   }

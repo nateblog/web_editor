@@ -15,7 +15,7 @@ class ToolDrawer extends Component {
         Tools.map((item, index) => (
           item.type === "draggable" ?
           (
-            <div className="tool_wrapper" key={index+item.id} draggable="true" onDragStart={(event)=>{
+            <div className={`tool_wrapper ${item.type}`} key={index+item.id} draggable="true" onDragStart={(event)=>{
               onStartDrag(item.name);
               drag(event);
             }}>
@@ -25,7 +25,7 @@ class ToolDrawer extends Component {
           )
           :
           (
-            <div className="tool_wrapper" key={index+item.id} onClick={()=>item.event()}>
+            <div className={`tool_wrapper ${item.type}`} key={index+item.id} onClick={()=>item.event()}>
               <div id="tool_icon"><i className={`fa ${item.icon}`} aria-hidden="true" id="tool_container_icon" style={{fontSize: item.size + 'px'}}></i></div>
               <div id="tool_lable">{item.label}</div>
             </div>

@@ -35,6 +35,10 @@ export default [
       const newBody = document.createElement("BODY");
       const newTitle = document.createElement("TITLE");
 
+      /** BODY STYLE **/
+      newBody.style.margin = "0px";
+      newBody.style.boxSizing = "border-box";
+
       newBody.innerHTML = webContent;
       newTitle.innerHTML = "Live Mode: Sample Sitename";
 

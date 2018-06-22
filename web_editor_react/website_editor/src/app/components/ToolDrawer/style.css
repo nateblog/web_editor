@@ -23,6 +23,14 @@
   flex-direction: column;
 }
 
+.draggable {
+  cursor: move;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
 #tool_lable {
   font-size: 9px;
   text-align: center;
@@ -38,6 +46,5 @@
 }
 
 #tool_container_icon {
-  /* font-size: 30px; */
   color: #ffffff;
 }

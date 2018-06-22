@@ -17,55 +17,56 @@ class App extends Component {
       toolProps: {
         container: ToolProperties.container
       },
-      selectedDiv: ""
+      selectedDiv: "",
+      selectedClass: ""
     };
 
     this.divHighlighter = this.divHighlighter.bind(this);
   }
 
-  handlePrevSelectedDiv(prevDiv, nextDiv) {
+  handlePrevSelectedDiv(prevDiv, nextDiv, className) {
     if(prevDiv !== '') {
       /** PREVIOUS SELECTED DIV STYLE **/
-      document.getElementById(prevDiv).style.border = "0px solid red";
-      document.getElementById(prevDiv).style.width = "100%";
+      // document.getElementById(prevDiv).style.border = "0px solid #006faf";
+      // document.getElementById(prevDiv).style.width = "100%";
 
       if(prevDiv !== nextDiv) {
         /** NEW SELECTED DIV STYLE **/
-        document.getElementById(nextDiv).style.border = "2.5px dashed red";
-        document.getElementById(nextDiv).style.width = "99.45%";
+        // document.getElementById(nextDiv).style.border = "2.5px solid #006faf";
+        // document.getElementById(nextDiv).style.width = "99.75%";
         document.getElementById("component_properties_wrapper").style.display = "block";
-        this.setState({selectedDiv: nextDiv});
+        this.setState({selectedDiv: nextDiv, selectedClass: className});
       } else {
         /** NEW SELECTED DIV STYLE **/
-        document.getElementById(nextDiv).style.border = "0px solid red";
-        document.getElementById(nextDiv).style.width = "100%";
+        // document.getElementById(nextDiv).style.border = "0px solid #006faf";
+        // document.getElementById(nextDiv).style.width = "100%";
         document.getElementById("component_properties_wrapper").style.display = "none";
-        this.setState({selectedDiv: ""});
+        this.setState({selectedDiv: "", selectedClass: ""});
       }
     } else {
       if(prevDiv !== nextDiv) {
         /** NEW SELECTED DIV STYLE **/
-        document.getElementById(nextDiv).style.border = "2.5px dashed red";
-        document.getElementById(nextDiv).style.width = "99.45%";
+        // document.getElementById(nextDiv).style.border = "2.5px solid #006faf";
+        // document.getElementById(nextDiv).style.width = "99.75%";
         document.getElementById("component_properties_wrapper").style.display = "block";
-        this.setState({selectedDiv: nextDiv});
+        this.setState({selectedDiv: nextDiv, selectedClass: className});
       } else {
         /** NEW SELECTED DIV STYLE **/
-        document.getElementById(nextDiv).style.border = "0px solid red";
-        document.getElementById(nextDiv).style.width = "100%";
+        // document.getElementById(nextDiv).style.border = "0px solid #006faf";
+        // document.getElementById(nextDiv).style.width = "100%";
         document.getElementById("component_properties_wrapper").style.display = "none";
-        this.setState({selectedDiv: ""});
+        this.setState({selectedDiv: "", selectedClass: ""});
       }
     }
   }
 
   divHighlighter(event) {
     const { selectedDiv } = this.state;
-    this.handlePrevSelectedDiv(selectedDiv, event.target.id);
+    this.handlePrevSelectedDiv(selectedDiv, event.target.id, event.target.className);
   }
 
   render() {
-    const { usedTool } = this.state;
+    const { usedTool, selectedDiv, selectedClass } = this.state;
     const self = this;
 
     return (
@@ -75,7 +76,7 @@ class App extends Component {
             this.setState({usedTool: tool})
           }}/>
 
-          <ComponentProperties />
+          <ComponentProperties selectedDiv={selectedDiv} selectedClass={selectedClass}/>
         </div>
 
         <div id="site_body_wrapper" onDrop={(event)=>{drop(event, usedTool, self)}} onDragOver={(event)=>{allowDrop(event)}}>

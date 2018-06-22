@@ -1,7 +1,7 @@
 #component_properties_wrapper {
   right: 0px;
   background-color: rgba(0,0,0,0.8);
-  width: 150px;
+  width: 240px;
   height: 100vh;
   z-index: 1;
   float: right;
@@ -21,5 +21,79 @@
 }
 
 #component_properties {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 0px;
+}
 
+#selected_div {
+  color: orange;
+  font-size: 12px;
+  padding: 5px;
+  font-family: tahoma;
+}
+
+/** CUSTOM CHANGES FOR PICKER **/
+
+.sketch-picker {
+  border-radius: 0px!important;
+  box-shadow: none!important;
+}
+
+/** CUSTOM BOOSTRAP CHANGES **/
+
+.panel-group .panel {
+  margin-bottom: 0;
+  border-radius: 0px!important;
+  width: 240px!important;
+}
+
+.panel-group .panel+.panel {
+  margin-top: 0px!important;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+  display: flex!important;
+  justify-content: center!important;
+  align-items: center!important;
+}
+
+.panel-body {
+  padding: 0px!important;
+}
+
+a:focus, a:hover {
+  text-decoration: none!important;
+}
+
+.panel-title>.small, .panel-title>.small>a, .panel-title>a, .panel-title>small, .panel-title>small>a {
+  font-size: 12px!important;
+  font-family: tahoma!important;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 0px!important;
+  border-top-right-radius: 0px!important;
+}
+
+.list-group-item:last-child {
+  border-bottom-right-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+}
+
+.list-group {
+  margin-bottom: 0px!important;
+}
+
+.list-group-item-heading {
+    font-size: 12px!important;
+    font-weight: bold!important;
+    color: #0E73BE!important;
+}
+
+.list-group-item-text {
+  font-size: 10px!important;
+  font-weight: bold!important;
+  color: #DC6A09!important;
 }

@@ -1,0 +1,28 @@
+.tool_title {
+  color: #ffffff;
+  font-size: 12px;
+  font-family: tahoma;
+}
+
+#size_properties_wrapper > .form-group {
+  margin-bottom: 0px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  padding: 5px;
+}
+
+.btn-default {
+  background-color: transparent!important;
+  border-color: transparent!important;
+}
+
+.input-group .form-control {
+  width: 160px!important;
+}
+
+.dropdown-menu {
+  min-width: 76px!important;
+  border-radius: 0px!important;
+}
