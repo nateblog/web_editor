@@ -1,6 +1,27 @@
 export default [
   {
     "id": "0001",
+    "hasProps": true,
+    "name": "settings",
+    "label": "SETTINGS",
+    "icon": "fa-cog",
+    "size": 24,
+    "type": "clickable",
+    "event": (self) => {
+      const { usedTool } = self.state;
+      self.setState({selectedDiv: "", selectedClass: ""});
+      if(document.getElementById("component_properties_wrapper").style["display"] === "none" || document.getElementById("component_properties_wrapper").style["display"] === "") {
+        document.getElementById("component_properties_wrapper").style.display = "block";
+      } else {
+        if(usedTool === "settings") {
+          document.getElementById("component_properties_wrapper").style.display = "none";
+        }
+      }
+    }
+  },
+  {
+    "id": "0002",
+    "hasProps": true,
     "name": "container",
     "label": "CONTAINER",
     "icon": "fa-square-o",
@@ -8,7 +29,8 @@ export default [
     "type": "draggable"
   },
   {
-    "id": "0002",
+    "id": "0003",
+    "hasProps": true,
     "name": "image",
     "label": "IMAGE",
     "icon": "fa-picture-o",
@@ -16,7 +38,8 @@ export default [
     "type": "draggable"
   },
   {
-    "id": "0003",
+    "id": "0004",
+    "hasProps": true,
     "name": "text",
     "label": "TEXT",
     "icon": "fa-text-height",
@@ -25,6 +48,7 @@ export default [
   },
   {
     "id": "0005",
+    "hasProps": false,
     "name": "live",
     "label": "LIVE",
     "icon": "fa-globe",

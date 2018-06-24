@@ -7,8 +7,8 @@ import {
 
 class ToolDrawer extends Component {
   render() {
-    const { onStartDrag } = this.props;
-
+    const { onStartDrag, onClickStart, parentProp } = this.props;
+    let self = parentProp;
     return (
       <div className="tool_drawer_wrapper">
       {
@@ -25,7 +25,12 @@ class ToolDrawer extends Component {
           )
           :
           (
-            <div className={`tool_wrapper ${item.type}`} key={index+item.id} onClick={()=>item.event()}>
+            <div className={`tool_wrapper ${item.type}`} key={index+item.id} onClick={()=>{
+              item.event(self);
+              if(item.hasProps) {
+                onClickStart(item.name);
+              }
+            }}>
               <div id="tool_icon"><i className={`fa ${item.icon}`} aria-hidden="true" id="tool_container_icon" style={{fontSize: item.size + 'px'}}></i></div>
               <div id="tool_lable">{item.label}</div>
             </div>

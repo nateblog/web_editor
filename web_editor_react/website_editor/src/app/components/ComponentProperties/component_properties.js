@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-import { Background, Size } from './props/index';
+import { Background, Size } from './ContainerProps/index';
 import { PanelGroup, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class ComponentProperties extends Component {
@@ -14,33 +14,48 @@ class ComponentProperties extends Component {
     };
   }
 
+  getList(propType) {
+    const { selectedDiv } = this.props;
+    const PropList = {
+      container: [
+        {
+          name: "background",
+          label: "BACKGROUND",
+          component: <Background selectedDiv={selectedDiv} />,
+          icon: "fa-pencil-square"
+        },
+        {
+          name: "size",
+          label: "SIZE",
+          component: <Size selectedDiv={selectedDiv} />,
+          icon: "fa-arrows-alt"
+        },
+        {
+          name: "position",
+          label: "POSITION",
+          component: <div>position</div>,
+          icon: "fa-arrows"
+        },
+      ]
+
+    }
+
+    if(propType !== "" && PropList[propType]) {
+      return PropList[propType];
+    } else {
+      return [];
+    }
+  }
+
   handleSelect(activeKey) {
     this.setState({ activeKey });
   }
 
   render() {
-    const { selectedDiv, selectedClass } = this.props;
-    const properties = [
-      {
-        name: "background",
-        label: "BACKGROUND",
-        component: <Background selectedDiv={selectedDiv} />,
-        icon: "fa-pencil-square"
-      },
-      {
-        name: "size",
-        label: "SIZE",
-        component: <Size selectedDiv={selectedDiv} />,
-        icon: "fa-arrows-alt"
-      },
-      {
-        name: "position",
-        label: "POSITION",
-        component: <div>position</div>,
-        icon: "fa-arrows"
-      },
-    ];
-
+    const { selectedDiv, selectedClass, usedTool } = this.props;
+    console.log(usedTool);
+    const properties = this.getList(usedTool);
+    console.log(properties);
     return (
       <div id="component_properties_wrapper">
         <div id="property_title">PROPERTIES</div>
@@ -72,6 +87,7 @@ class ComponentProperties extends Component {
               ))
             }
           </PanelGroup>
+
         </div>
       </div>
     );

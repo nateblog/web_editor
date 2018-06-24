@@ -24,7 +24,15 @@ class App extends Component {
     this.divHighlighter = this.divHighlighter.bind(this);
   }
 
+  getDivTagType(className) {
+    let getPrimaryClassname = className.split(" ")[0];
+    if(getPrimaryClassname === "appContainer") {
+      return "container"
+    }
+  }
+
   handlePrevSelectedDiv(prevDiv, nextDiv, className) {
+    this.setState({usedTool: this.getDivTagType(className)});
     if(prevDiv !== '') {
       /** PREVIOUS SELECTED DIV STYLE **/
       // document.getElementById(prevDiv).style.border = "0px solid #006faf";
@@ -61,6 +69,7 @@ class App extends Component {
   }
 
   divHighlighter(event) {
+    event.stopPropagation();
     const { selectedDiv } = this.state;
     this.handlePrevSelectedDiv(selectedDiv, event.target.id, event.target.className);
   }
@@ -74,9 +83,11 @@ class App extends Component {
         <div id="tools_and_props">
           <ToolDrawer onStartDrag={(tool)=>{
             this.setState({usedTool: tool})
-          }}/>
+          }} onClickStart={(tool) => {
+            this.setState({usedTool: tool});
+          }} parentProp={self} />
 
-          <ComponentProperties selectedDiv={selectedDiv} selectedClass={selectedClass}/>
+          <ComponentProperties selectedDiv={selectedDiv} selectedClass={selectedClass} usedTool={usedTool} />
         </div>
 
         <div id="site_body_wrapper" onDrop={(event)=>{drop(event, usedTool, self)}} onDragOver={(event)=>{allowDrop(event)}}>

@@ -17,21 +17,19 @@ export function drag(ev) {
 
 export function drop(ev, tool, self) {
   ev.preventDefault();
+  let getID = generateId();
 
   if(Object.keys(self).length > 0) {
     if(tool === 'container') {
       var newDiv = document.createElement("div");
-      newDiv.setAttribute("class", "container editableElement");
-      newDiv.setAttribute("id", generateId());
+      newDiv.setAttribute("class", "appContainer editableElement");
+      newDiv.setAttribute("id", getID);
       newDiv.onclick = (event)=>self.divHighlighter(event);
       newDiv.setAttribute("style", self.state.toolProps.container);
-
-      var highlighter = document.createElement("div");
-      highlighter.setAttribute("class", "container highlighter");
-      highlighter.setAttribute("id", generateId());
-
-      newDiv.innerHTML = highlighter.outerHTML;
       ev.target.appendChild(newDiv);
+
+      document.getElementById("component_properties_wrapper").style.display = "block";
+      self.setState({selectedDiv: getID, selectedClass: "appContainer editableElement"});
     }
   }
 }
