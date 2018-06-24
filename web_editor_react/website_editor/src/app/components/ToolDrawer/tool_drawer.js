@@ -7,7 +7,7 @@ import {
 
 class ToolDrawer extends Component {
   render() {
-    const { onStartDrag, onClickStart, parentProp } = this.props;
+    const { onStartDrag, onClickStart, parentProp, data } = this.props;
     let self = parentProp;
     return (
       <div className="tool_drawer_wrapper">
@@ -18,6 +18,7 @@ class ToolDrawer extends Component {
             <div className={`tool_wrapper ${item.type}`} key={index+item.id} draggable="true" onDragStart={(event)=>{
               onStartDrag(item.name);
               drag(event);
+              data(item);
             }}>
               <div id="tool_icon"><i className={`fa ${item.icon}`} aria-hidden="true" id="tool_container_icon" style={{fontSize: item.size + 'px'}}></i></div>
               <div id="tool_lable">{item.label}</div>
@@ -29,6 +30,7 @@ class ToolDrawer extends Component {
               item.event(self);
               if(item.hasProps) {
                 onClickStart(item.name);
+                data(item);
               }
             }}>
               <div id="tool_icon"><i className={`fa ${item.icon}`} aria-hidden="true" id="tool_container_icon" style={{fontSize: item.size + 'px'}}></i></div>

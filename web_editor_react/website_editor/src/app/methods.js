@@ -24,6 +24,7 @@ export function drop(ev, tool, self) {
       var newDiv = document.createElement("div");
       newDiv.setAttribute("class", "appContainer editableElement");
       newDiv.setAttribute("id", getID);
+      newDiv.setAttribute("data-props", JSON.stringify(self.state.selectedToolProps));
       newDiv.onclick = (event)=>self.divHighlighter(event);
       newDiv.setAttribute("style", self.state.toolProps.container);
       ev.target.appendChild(newDiv);

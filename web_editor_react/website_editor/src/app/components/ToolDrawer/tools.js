@@ -2,6 +2,7 @@ export default [
   {
     "id": "0001",
     "hasProps": true,
+    "target": "head",
     "name": "settings",
     "label": "SETTINGS",
     "icon": "fa-cog",
@@ -22,6 +23,7 @@ export default [
   {
     "id": "0002",
     "hasProps": true,
+    "target": "body",
     "name": "container",
     "label": "CONTAINER",
     "icon": "fa-square-o",
@@ -31,6 +33,7 @@ export default [
   {
     "id": "0003",
     "hasProps": true,
+    "target": "body",
     "name": "image",
     "label": "IMAGE",
     "icon": "fa-picture-o",
@@ -40,6 +43,7 @@ export default [
   {
     "id": "0004",
     "hasProps": true,
+    "target": "body",
     "name": "text",
     "label": "TEXT",
     "icon": "fa-text-height",
@@ -49,6 +53,7 @@ export default [
   {
     "id": "0005",
     "hasProps": false,
+    "target": "app",
     "name": "live",
     "label": "LIVE",
     "icon": "fa-globe",

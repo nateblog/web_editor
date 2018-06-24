@@ -36,6 +36,14 @@ class ComponentProperties extends Component {
           component: <div>position</div>,
           icon: "fa-arrows"
         },
+      ],
+      settings: [
+        {
+          name: "app_title",
+          label: "APP TITLE",
+          component: <div>app title</div>,
+          icon: "fa-pencil-square"
+        }
       ]
 
     }
@@ -53,16 +61,24 @@ class ComponentProperties extends Component {
 
   render() {
     const { selectedDiv, selectedClass, usedTool } = this.props;
-    console.log(usedTool);
     const properties = this.getList(usedTool);
-    console.log(properties);
+
+    let selectedToolDataProps = selectedDiv !== "" ? JSON.parse(document.getElementById(selectedDiv).getAttribute("data-props")) : null;
+
     return (
       <div id="component_properties_wrapper">
         <div id="property_title">PROPERTIES</div>
-        <ListGroup>
-          <ListGroupItem header="Div ID">{`${selectedDiv}`}</ListGroupItem>
-          <ListGroupItem header="Div CLASS">{`[ ${selectedClass.split(" ").join(", ")} ]`}</ListGroupItem>
-        </ListGroup>
+        {
+          selectedToolDataProps !== null && selectedToolDataProps.target === "body" ?
+          (
+            <ListGroup>
+              <ListGroupItem header="Div ID">{`${selectedDiv}`}</ListGroupItem>
+              <ListGroupItem header="Div CLASS">{`[ ${selectedClass.split(" ").join(", ")} ]`}</ListGroupItem>
+            </ListGroup>
+          )
+          :
+          null
+        }
         <div id="component_properties">
 
           <PanelGroup

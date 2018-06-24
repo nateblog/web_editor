@@ -18,7 +18,8 @@ class App extends Component {
         container: ToolProperties.container
       },
       selectedDiv: "",
-      selectedClass: ""
+      selectedClass: "",
+      selectedToolProps: {}
     };
 
     this.divHighlighter = this.divHighlighter.bind(this);
@@ -85,9 +86,15 @@ class App extends Component {
             this.setState({usedTool: tool})
           }} onClickStart={(tool) => {
             this.setState({usedTool: tool});
-          }} parentProp={self} />
+          }} parentProp={self} data={(props)=>{
+            this.setState({selectedToolProps: props});
+          }} />
 
-          <ComponentProperties selectedDiv={selectedDiv} selectedClass={selectedClass} usedTool={usedTool} />
+          <ComponentProperties
+            selectedDiv={selectedDiv}
+            selectedClass={selectedClass}
+            usedTool={usedTool}
+          />
         </div>
 
         <div id="site_body_wrapper" onDrop={(event)=>{drop(event, usedTool, self)}} onDragOver={(event)=>{allowDrop(event)}}>
